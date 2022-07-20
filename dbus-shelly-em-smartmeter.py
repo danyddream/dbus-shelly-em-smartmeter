@@ -150,7 +150,11 @@ class DbusShellyemService:
        self._dbusservice['/Ac/L1/Energy/Reverse'] = (meter_data['emeters'][0]['total_returned']/1000)    
        
         
-       #self._dbusservice['/Ac/Power'] = meter_data['total_power'] # positive: consumption, negative: feed into grid
+       self._dbusservice['/Ac/Power'] = meter_data['emeters'][0]['power'] # positive: consumption, negative: feed into grid
+       
+       accurrent = meter_data['emeters'][0]['power'] / meter_data['emeters'][0]['voltage']
+       self._dbusservice['/Ac/Current'] = accurrent
+       
        #self._dbusservice['/Ac/L2/Voltage'] = meter_data['emeters'][1]['voltage']
        #self._dbusservice['/Ac/L2/Current'] = meter_data['emeters'][1]['current']
        #self._dbusservice['/Ac/L2/Power'] = meter_data['emeters'][1]['power']
